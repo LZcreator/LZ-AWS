@@ -1,16 +1,19 @@
-resource "aws_vpc" "main" {
+resource "aws_vpc" "vpc_lz" {
   cidr_block = "10.0.0.0/16"
   tags = {
-    Name = "main-vpc"
+    Name = "lz-vpc"
   }
 }
 
 resource "aws_subnet" "public" {
-  vpc_id                  = aws_vpc.main.id
+  vpc_id                  = aws_vpc.vpc_lz.id
   cidr_block              = "10.0.1.0/24"
   availability_zone       = "us-east-1a"
-  map_public_ip_on_launch = true
   tags = {
     Name = "public-subnet"
   }
+}
+
+resource "aws_internet_gateway" "gw" {
+  vpc_id = aws_vpc.main.id
 }

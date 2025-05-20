@@ -3,7 +3,7 @@ module "network" {
 }
 
 module "ec2" {
-  source     = "./modules/network"
+  source = "./modules/network"
 }
 
 module "s3" {
