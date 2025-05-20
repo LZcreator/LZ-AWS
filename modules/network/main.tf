@@ -42,7 +42,7 @@ resource "aws_internet_gateway" "igw" {
 
 # Tabla de rutas pública
 resource "aws_route_table" "public_crt" {
-  vpc_id = aws_vpc.vpc_virginia
+  vpc_id = aws_vpc.vpc_virginia.id
 
   route {
     cidr_block = "0.0.0.0/0"
