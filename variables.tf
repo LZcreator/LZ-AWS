@@ -1,29 +1,20 @@
 variable "aws_region" {
-  description = "AWS Region"
+  description = "Region donde se desplegara la infraestructura"
   type        = string
   default     = "us-east-1"
 }
 
-variable "virginia_cidr" {
-  type = string
+variable "project" {
+  description = "Nombre del proyecto (para tags y nombres de recursos)"
+  type        = string
 }
 
-variable "subnets" {
-  type = list(string)
+variable "environment" {
+  description = "Nombre del entorno (dev, staging, prod)"
+  type        = string
 }
 
-variable "tags" {
-  type = map(string)
-}
-
-variable "sg_ingress_cidr" {
-  type = string
-}
-
-variable "ec2_specs" {
-  type = map(string)
-}
-
-variable "ingress_ports_list" {
-  type = list(number)
+variable "common_tags" {
+  description = "Tags comunes para aplicar a todos los recursos"
+  type        = map(string)
 }
