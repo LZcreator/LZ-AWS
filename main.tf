@@ -11,6 +11,9 @@ module "network" {
 
 module "iam" {
   source      = "./modules/iam"
+  project     = var.project
+  sufix       = local.sufix
+  common_tags = var.common_tags
 }
 
 module "budget" {

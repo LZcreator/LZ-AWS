@@ -63,7 +63,7 @@ resource "aws_route_table_association" "crta_public_subnet" {
 # Security Group básico
 resource "aws_security_group" "default" {
   name        = "Public Instance SG"
-  description = "Grupo de seguridad para acceso básico"
+  description = "Basic access security group"
   vpc_id      = aws_vpc.vpc_virginia.id
 
   ingress {
