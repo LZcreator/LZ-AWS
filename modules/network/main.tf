@@ -20,7 +20,7 @@ resource "aws_subnet" "public_subnet" {
   })
 }
 
-# Subnet privada
+# Private Subnet
 resource "aws_subnet" "private_subnet" {
   vpc_id            = aws_vpc.vpc_virginia.id
   cidr_block        = "10.0.2.0/24"
@@ -40,7 +40,7 @@ resource "aws_internet_gateway" "igw" {
   })
 }
 
-# Tabla de rutas pública
+# Route table
 resource "aws_route_table" "public_crt" {
   vpc_id = aws_vpc.vpc_virginia.id
 
@@ -54,13 +54,13 @@ resource "aws_route_table" "public_crt" {
   })
 }
 
-# Asociación de subnet pública a tabla de rutas
+# Route table and Public subnet
 resource "aws_route_table_association" "crta_public_subnet" {
   subnet_id      = aws_subnet.public_subnet.id
   route_table_id = aws_route_table.public_crt.id
 }
 
-# Security Group básico
+# Security Group
 resource "aws_security_group" "default" {
   name        = "Public Instance SG"
   description = "Basic access security group"

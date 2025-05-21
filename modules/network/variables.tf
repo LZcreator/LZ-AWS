@@ -1,14 +1,14 @@
 variable "project" {
-  description = "Nombre del proyecto"
+  description = "name of the project"
   type        = string
 }
 
 variable "common_tags" {
-  description = "Tags comunes para todos los recursos"
+  description = "common tags"
   type        = map(string)
 }
 
 variable "sufix" {
-  description = "Sufijo para nombres únicos"
+  description = "sufix for the unique names"
   type        = string
 }

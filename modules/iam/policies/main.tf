@@ -1,6 +1,6 @@
 resource "aws_iam_policy" "custom_policy" {
   name        = "policy-${var.sufix}"
-  description = "Policy básica con acceso a S3 y CloudWatch Logs"
+  description = "Policy with acceso to S3 y CloudWatch Logs"
 
   policy = jsonencode({
     Version = "2012-10-17",

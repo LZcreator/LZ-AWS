@@ -1,19 +1,19 @@
 variable "sufix" {
-  description = "Sufijo para nombres únicos"
+  description = "sufix for unique names"
   type        = string
 }
 
 variable "common_tags" {
-  description = "Tags comunes para todos los recursos"
+  description = "common tags"
   type        = map(string)
 }
 
 variable "policy_arn" {
-  description = "ARN de la política a adjuntar al grupo"
+  description = "ARN of the policy"
   type        = string
 }
 
 variable "project" {
-  description = "Nombre del proyecto"
+  description = "name of the project"
   type        = string
 }

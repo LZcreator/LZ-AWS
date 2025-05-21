@@ -1,20 +1,20 @@
 variable "aws_region" {
-  description = "Region donde se desplegara la infraestructura"
+  description = "region where to deploy the infrastructure"
   type        = string
   default     = "us-east-1"
 }
 
 variable "project" {
-  description = "Nombre del proyecto (para tags y nombres de recursos)"
+  description = "name of the project"
   type        = string
 }
 
 variable "environment" {
-  description = "Nombre del entorno (dev, staging, prod)"
+  description = "name of the enviroment (dev, staging, prod)"
   type        = string
 }
 
 variable "common_tags" {
-  description = "Tags comunes para aplicar a todos los recursos"
+  description = "common tags"
   type        = map(string)
 }
