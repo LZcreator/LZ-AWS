@@ -1,7 +1,7 @@
 variable "budget_limit" {
   description = "Maximum monthly amount"
   type        = string
-  default     = "1.00"
+  default     = "0.01"
 }
 
 variable "threshold" {
