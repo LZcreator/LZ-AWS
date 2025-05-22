@@ -19,12 +19,13 @@ resource "aws_budgets_budget" "monthly_budget" {
     use_blended                = false
   }
 
-  time_period_start = var.start_date
+  time_period_start = "2025-05-01_00:00"
 
   notification {
-    comparison_operator        = "GREATER_THAN"
-    threshold                  = var.threshold
-    threshold_type             = "PERCENTAGE"
-    notification_type          = "ACTUAL"
+    comparison_operator = "GREATER_THAN"
+    threshold           = var.threshold
+    threshold_type      = "PERCENTAGE"
+    notification_type   = "ACTUAL"
+    subscriber_email_addresses = [var.alert_email]
   }
 }

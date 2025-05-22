@@ -11,9 +11,9 @@ variable "threshold" {
 }
 
 variable "start_date" {
-  description = "Start date of the budget (YYYY-MM-DD)"
+  description = "Start date of the budget (YYYY-MM-DD_hh:mm)"
   type        = string
-  default     = "2025-05-01"
+  default     = "2025-05-01_00:00"
 }
 
 variable "sufix" {
@@ -24,4 +24,10 @@ variable "sufix" {
 variable "common_tags" {
   description = "Common tags to apply to all resources"
   type        = map(string)
+}
+
+variable "alert_email" {
+  description = "Email address to receive budget alerts"
+  type        = string
+  default = "landingzone899@gmail.com"
 }

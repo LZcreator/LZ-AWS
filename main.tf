@@ -17,7 +17,7 @@ module "iam" {
 }
 
 module "budget" {
-  source       = "./modules/budgets"
-  sufix        = local.sufix
-  common_tags  = var.common_tags
+  source      = "./modules/budgets"
+  sufix       = local.sufix
+  common_tags = var.common_tags
 }

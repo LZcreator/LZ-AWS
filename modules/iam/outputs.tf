@@ -1,13 +1,21 @@
-output "iam_user_name" {
-  value = module.user.iam_user_name
+output "logs_s3_user_name" {
+  value = module.user.logs_s3_user_name
 }
 
-output "access_key_id" {
-  value     = module.user.access_key_id
+output "logs_s3_access_key_id" {
+  value     = module.user.logs_s3_access_key_id
   sensitive = true
 }
 
-output "secret_access_key" {
-  value     = module.user.secret_access_key
+output "logs_s3_secret_access_key" {
+  value     = module.user.logs_s3_secret_access_key
   sensitive = true
+}
+
+output "admin_user_name" {
+  value = module.user.admin_user_name
+}
+
+output "infra_user_name" {
+  value = module.user.infra_user_name
 }
