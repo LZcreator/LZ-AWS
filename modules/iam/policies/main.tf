@@ -1,6 +1,24 @@
+# admin policy
+resource "aws_iam_policy" "admin_policy" {
+  name        = "admin-policy-${var.sufix}"
+  description = "Full admin access"
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [{
+      Effect = "Allow",
+      Action = "*",
+      Resource = "*"
+    }]
+  })
+
+  tags = var.common_tags
+}
+
+# policy for for logs
 resource "aws_iam_policy" "logs_s3_policy" {
   name        = "logs-s3-policy-${var.sufix}"
-  description = "Política con acceso completo a S3 y CloudWatch Logs"
+  description = "Policy with complete access to S3 and CloudWatch Logs"
 
   policy = jsonencode({
     Version = "2012-10-17",
@@ -40,25 +58,9 @@ resource "aws_iam_policy" "logs_s3_policy" {
   tags = var.common_tags
 }
 
-
- resource "aws_iam_policy" "admin_policy" {
-  name        = "policy-admin-${var.sufix}"
-  description = "Full admin access"
-
-  policy = jsonencode({
-    Version = "2012-10-17",
-    Statement = [{
-      Effect = "Allow",
-      Action = "*",
-      Resource = "*"
-    }]
-  })
-
-  tags = var.common_tags
-}
-
+# policy for the acess to the infrastructure
 resource "aws_iam_policy" "infra_policy" {
-  name        = "policy-infra-${var.sufix}"
+  name        = "infra-policy-${var.sufix}"
   description = "Access to VPC, IAM and Budgets"
 
   policy = jsonencode({
@@ -69,9 +71,34 @@ resource "aws_iam_policy" "infra_policy" {
         Action = [
           "ec2:*",
           "iam:*",
-          "budgets:*"
         ],
         Resource = "*"
+      }
+    ]
+  })
+
+  tags = var.common_tags
+}
+
+# Policy for the billing group
+resource "aws_iam_policy" "billing_policy" {
+  name        = "billing-policy-${var.sufix}"
+  description = "Access to billing"
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect = "Allow",
+        Action = [
+          "aws-portal:ViewBilling",
+          "aws-portal:ViewAccount",
+          "aws-portal:ViewUsage",
+          "aws-portal:ViewPaymentMethods",
+          "budgets:*",
+          "ce:*"
+        ],
+        Resource = ["*"]
       }
     ]
   })

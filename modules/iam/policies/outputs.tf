@@ -1,4 +1,4 @@
-output "policy_arn" {
+output "logs_s3_policy_arn" {
   value = aws_iam_policy.logs_s3_policy.arn
 }
 
@@ -8,4 +8,8 @@ output "admin_policy_arn" {
 
 output "infra_policy_arn" {
   value = aws_iam_policy.infra_policy.arn
+}
+
+output "billing_policy_arn" {
+  value = aws_iam_policy.billing_policy.arn
 }
