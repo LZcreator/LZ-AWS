@@ -1,39 +1,31 @@
 #
-variable "paris_cidr" {
-  description = "CIDR Paris"
-  type = string
+variable "instance_name" {
+  description = "Names for the public instances"
+  type = set(string)
 }
 
-# variable "public_subnet" {
-#   description = "CIDR public subnet"
-#   type        = string
-# }
+ variable "public_subnet" {
+   description = "CIDR public subnet"
+   type        = string
+ }
 
-# variable "private_subnet" {
-#   description = "CIDR private subnet"
-#   type        = string
-# }
-
-variable "subnets" {
-  description = "Lista de subnets"
-  type        = list(string)
-}
-
-variable "tags" {
-  description = "Tags del proyecto"
-  type        = map(string)
-}
-
-variable "sg_ingress_cidr" {
-  description = "CIDR for ingress traffic"
-  type        = string
-
-}
+ variable "private_subnet" {
+   description = "CIDR private subnet"
+   type        = string
+ }
 
 variable "ec2_specs" {
-  description = "Parametros de la instancia"
-  type = map(string)
+  description = "EC2 specifications including AMI and instance type"
+  type = object({
+    ami           = string
+    instance_type = string
+  })
+  default = {
+    ami           = "ami-0abcdef1234567890"
+    instance_type = "t2.micro"
+  }
 }
+
 
 variable "enable_monitoring" {
   description = "Habilita el despliegue de un servidor de monitoreo"
