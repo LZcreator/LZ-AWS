@@ -5,14 +5,16 @@ variable "instance_name" {
 }
 
  variable "public_subnet" {
-   description = "CIDR public subnet"
+   description = "The public subnet"
    type        = string
  }
 
  variable "private_subnet" {
-   description = "CIDR private subnet"
+   description = "The private subnet"
    type        = string
  }
+
+
 
 variable "ec2_specs" {
   description = "EC2 specifications including AMI and instance type"
@@ -21,8 +23,8 @@ variable "ec2_specs" {
     instance_type = string
   })
   default = {
-    ami           = "ami-0abcdef1234567890"
-    instance_type = "t2.micro"
+    ami           = "var.ec2_specs.ami"
+    instance_type = "var.ec2_specs.instance_type"
   }
 }
 
@@ -33,7 +35,3 @@ variable "enable_monitoring" {
 
 }
 
-variable "ingress_ports_list" {
-  description = "Lista de puertos ingress"
-  type = list(number)
-}
