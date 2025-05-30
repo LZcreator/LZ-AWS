@@ -61,7 +61,7 @@ resource "aws_iam_policy" "logs_s3_policy" {
 # policy for the acess to the infrastructure
 resource "aws_iam_policy" "infra_policy" {
   name        = "infra-policy-${var.sufix}"
-  description = "Access to VPC, IAM and Budgets"
+  description = "Access to Ec2, Vps, IAM"
 
   policy = jsonencode({
     Version = "2012-10-17",
