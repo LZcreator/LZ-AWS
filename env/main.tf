@@ -1,12 +1,12 @@
 provider "aws" {
-  region = "us-east-1"
+  region = "eu-west-3"
 }
 
 terraform {
   backend "s3" {
     bucket = "mi-bucket-terraform"
     key    = "env/main.tfstate"
-    region = "us-east-1"
+    region = "eu-west-3"
   }
 }
 
@@ -17,7 +17,7 @@ resource "aws_vpc" "landing_zone_vpc" {
 resource "aws_subnet" "public_subnet" {
   vpc_id            = aws_vpc.landing_zone_vpc.id
   cidr_block        = "10.0.1.0/24"
-  availability_zone = "us-east-1a"
+  availability_zone = "eu-west-3"
 }
 
 resource "aws_internet_gateway" "gw" {
