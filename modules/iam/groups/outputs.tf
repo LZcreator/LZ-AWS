@@ -13,4 +13,3 @@ output "infra_group_name" {
 output "billing_group_name" {
   value = aws_iam_group.billing_group.name
 }
-

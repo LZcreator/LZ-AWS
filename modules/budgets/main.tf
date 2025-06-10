@@ -1,10 +1,12 @@
+# Resource that creates a monthly AWS budget
 resource "aws_budgets_budget" "monthly_budget" {
-  name              = "budget-${var.sufix}"
-  budget_type       = "COST"
-  limit_amount      = var.budget_limit
+  name              = "budget-${var.sufix}"  # Budget name with dynamic suffix
+  budget_type       = "COST"                 # Budget based on cost (not usage or RI/Savings Plans)
+  limit_amount      = var.budget_limit       # Maximum allowed amount in USD
   limit_unit        = "USD"
-  time_unit         = "MONTHLY"
+  time_unit         = "MONTHLY"              # Budget is evaluated monthly
 
+  # Specifies what types of costs are included in the budget calculation
   cost_types {
     include_credit             = true
     include_discount           = true
@@ -19,13 +21,17 @@ resource "aws_budgets_budget" "monthly_budget" {
     use_blended                = false
   }
 
+  # Start date for the budget period
   time_period_start = "2025-05-01_00:00"
 
+  # Notification settings for when budget thresholds are exceeded
   notification {
-    comparison_operator = "GREATER_THAN"
-    threshold           = var.threshold
-    threshold_type      = "PERCENTAGE"
-    notification_type   = "ACTUAL"
+    comparison_operator = "GREATER_THAN"  # Triggers when cost exceeds threshold
+    threshold           = var.threshold   # Threshold percentage (e.g., 80 means 80%)
+    threshold_type      = "PERCENTAGE"    # Interprets threshold as a percentage of the budget
+    notification_type   = "ACTUAL"        # Based on actual usage (not forecasted)
+    
+    # List of email addresses to notify when the threshold is exceeded
     subscriber_email_addresses = [var.alert_email]
   }
 }

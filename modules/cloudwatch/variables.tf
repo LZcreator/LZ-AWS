@@ -1,23 +1,23 @@
-// Variable que habilita o deshabilita la creación de la alarma de CPU.
-// Cuando es false, la alarma no se crea, ayudando a evitar cargos innecesarios en entornos de desarrollo.
+# Variable that enables or disables the creation of the CPU alarm
+# When set to false, the alarm is not created, helping to avoid unnecessary charges in development environments
 variable "enable_cpu_alarm" {
-  description = "Habilitar la creación de la alarma de CPU."
+  description = "Enable the creation of the CPU alarm."
   type        = bool
   default     = true
 }
 
-// Variable que almacena el ARN del topic de SNS al que se enviarán las notificaciones cuando se dispare la alarma.
-// Debes reemplazar el valor por el ARN real de tu entorno.
+# Variable that stores the ARN of the SNS topic to which alarm notifications will be sent
+# You should replace the value with the actual ARN for your environment
 variable "sns_topic_arn" {
-  description = "ARN del topic de SNS para notificaciones de la alarma."
+  description = "ARN of the SNS topic for alarm notifications"
   type        = string
   default     = "arn:aws:sns:region:account-id:your-topic-name"
 }
 
-// Variable que define el número de días que se mantendrán los logs en el grupo de logs de CloudWatch
-// antes de su eliminación. Esto ayuda a controlar el almacenamiento y los costos asociados.
+# Variable that defines how many days logs will be retained in the CloudWatch Logs group
+# before being deleted. This helps manage storage and associated costs
 variable "log_retention_days" {
-  description = "Número de días para retener los logs en CloudWatch Logs."
+  description = "Number of days to retain logs in CloudWatch Logs"
   type        = number
   default     = 14
 }

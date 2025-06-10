@@ -1,24 +1,24 @@
-# admin policy
+# IAM Policy providing full administrative access
 resource "aws_iam_policy" "admin_policy" {
   name        = "admin-policy-${var.sufix}"
-  description = "Full admin access"
+  description = "Full administrative access to all AWS resources"
 
   policy = jsonencode({
     Version = "2012-10-17",
     Statement = [{
       Effect = "Allow",
-      Action = "*",
-      Resource = "*"
+      Action = "*",       # Allows all AWS actions
+      Resource = "*"      # Grants permissions to all resources
     }]
   })
 
   tags = var.common_tags
 }
 
-# policy for for logs
+# IAM Policy providing full access to S3 and CloudWatch Logs
 resource "aws_iam_policy" "logs_s3_policy" {
   name        = "logs-s3-policy-${var.sufix}"
-  description = "Policy with complete access to S3 and CloudWatch Logs"
+  description = "Grants complete access to S3 buckets and CloudWatch Logs"
 
   policy = jsonencode({
     Version = "2012-10-17",
@@ -26,7 +26,7 @@ resource "aws_iam_policy" "logs_s3_policy" {
       {
         Effect = "Allow",
         Action = [
-          # S3
+          # S3 permissions
           "s3:ListAllMyBuckets",
           "s3:ListBucket",
           "s3:GetObject",
@@ -40,7 +40,7 @@ resource "aws_iam_policy" "logs_s3_policy" {
       {
         Effect = "Allow",
         Action = [
-          # CloudWatch Logs
+          # CloudWatch Logs permissions
           "logs:CreateLogGroup",
           "logs:CreateLogStream",
           "logs:PutLogEvents",
@@ -58,10 +58,10 @@ resource "aws_iam_policy" "logs_s3_policy" {
   tags = var.common_tags
 }
 
-# policy for the acess to the infrastructure
+# IAM Policy providing access to manage EC2, VPC, and IAM resources
 resource "aws_iam_policy" "infra_policy" {
   name        = "infra-policy-${var.sufix}"
-  description = "Access to Ec2, Vps, IAM"
+  description = "Allows full management of EC2, VPC, and IAM resources"
 
   policy = jsonencode({
     Version = "2012-10-17",
@@ -69,8 +69,8 @@ resource "aws_iam_policy" "infra_policy" {
       {
         Effect = "Allow",
         Action = [
-          "ec2:*",
-          "iam:*",
+          "ec2:*",     # Full EC2 permissions (including networking resources like VPC)
+          "iam:*"      # Full IAM permissions
         ],
         Resource = "*"
       }
@@ -80,10 +80,10 @@ resource "aws_iam_policy" "infra_policy" {
   tags = var.common_tags
 }
 
-# Policy for the billing group
+# IAM Policy providing access to AWS billing and budget services
 resource "aws_iam_policy" "billing_policy" {
   name        = "billing-policy-${var.sufix}"
-  description = "Access to billing"
+  description = "Allows access to billing, budgets, and cost explorer services"
 
   policy = jsonencode({
     Version = "2012-10-17",
@@ -95,8 +95,8 @@ resource "aws_iam_policy" "billing_policy" {
           "aws-portal:ViewAccount",
           "aws-portal:ViewUsage",
           "aws-portal:ViewPaymentMethods",
-          "budgets:*",
-          "ce:*"
+          "budgets:*",   # Full permissions for AWS Budgets
+          "ce:*"         # Full permissions for Cost Explorer
         ],
         Resource = ["*"]
       }

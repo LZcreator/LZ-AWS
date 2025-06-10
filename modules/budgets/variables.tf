@@ -29,5 +29,5 @@ variable "common_tags" {
 variable "alert_email" {
   description = "Email address to receive budget alerts"
   type        = string
-  default = "landingzone899@gmail.com"
+  default     = "landingzone899@gmail.com"
 }

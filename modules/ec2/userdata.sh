@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Este es un mensaje" > ~/mensaje.txt
+echo "This is a message" > ~/mensaje.txt
 yum update -y
 yum install httpd -y
 systemctl enable httpd

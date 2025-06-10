@@ -1,5 +1,6 @@
 variable "project" {
-  type = string
+  description = "name of the project"
+  type        = string
 }
 
 variable "sufix" {
@@ -7,5 +8,6 @@ variable "sufix" {
 }
 
 variable "common_tags" {
-  type = map(string)
+  description = "common tags"
+  type        = map(string)
 }
