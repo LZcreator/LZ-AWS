@@ -8,3 +8,18 @@ variable "enable_versioning" {
   type        = bool
   default     = true
 }
+
+variable "project" {
+  description = "Project name"
+  type        = string
+}
+
+variable "sufix" {
+  description = "Suffix used in resource names"
+  type        = string
+}
+
+variable "common_tags" {
+  description = "Common tags applied to resources"
+  type        = map(string)
+}
