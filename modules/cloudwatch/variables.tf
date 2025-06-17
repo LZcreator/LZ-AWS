@@ -17,3 +17,19 @@ variable "log_retention_days" {
   type        = number
   default     = 14
 }
+
+# Project information (added to align with expected module variables)
+variable "project" {
+  description = "Project name"
+  type        = string
+}
+
+variable "sufix" {
+  description = "Suffix used for naming resources"
+  type        = string
+}
+
+variable "common_tags" {
+  description = "Common tags applied to all resources"
+  type        = map(string)
+}

@@ -2,6 +2,8 @@
 resource "aws_cloudwatch_log_group" "app_logs" {
   name              = "app-log-group"
   retention_in_days = var.log_retention_days
+
+  tags = var.common_tags
 }
 
 # Conditional CloudWatch CPU Alarm
@@ -19,4 +21,6 @@ resource "aws_cloudwatch_metric_alarm" "cpu_high" {
   alarm_description   = "Triggers when CPU exceeds 80%"
   actions_enabled     = true
   alarm_actions       = [var.sns_topic_arn]
+
+  tags = var.common_tags
 }
