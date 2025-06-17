@@ -43,24 +43,29 @@ module "budget" {
 # Calls the 'ec2' module to deploy EC2 instances.
 # Includes monitoring conditional logic using 'enable_monitoring'.
 module "ec2" {
-  source        = "./modules/ec2"
-  instance_name = var.instance_name
-  public_subnet = var.public_subnet
+  source         = "./modules/ec2"
+  instance_name  = var.instance_name
+  public_subnet  = var.public_subnet
   private_subnet = var.private_subnet
-  project       = var.project
-  sufix         = local.sufix
-  common_tags   = var.common_tags
+  suffix         = local.suffix
+  project        = var.project
+  common_tags    = var.common_tags
+
+  ec2_specs = {
+    ami           = "ami-0f3f13f145e66a0a3"
+    instance_type = "t2.micro"
+  }
 }
+
 
 
 # CloudWatch Module (Monitoring & Logging)
 # Calls the 'cloudwatch' module to configure CloudWatch for monitoring.
 module "cloudwatch" {
   source      = "./modules/cloudwatch"
-  project     = var.project
-  sufix       = local.sufix
   common_tags = var.common_tags
-  enable_monitoring = var.enable_monitoring
+  enable_cpu_alarm = var.enable_cpu_alarm
+  sns_topic_arn = var.sns_topic_arn  # Ensure this variable is properly passed
 }
 
 # S3 Module (Storage)

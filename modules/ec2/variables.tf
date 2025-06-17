@@ -1,48 +1,56 @@
-# Variable defining public instance names
 variable "instance_name" {
-  description = "Names for the public instances"
-  type        = set(string) # Unique list of instance names
+  description = "Nombres de las instancias"
+  type        = set(string)
 }
 
-# Variable storing the public subnet
 variable "public_subnet" {
-  description = "Public subnet ID"
+  description = "ID de la subred pública"
   type        = string
 }
 
-# Variable storing the private subnet
 variable "private_subnet" {
-  description = "Private subnet ID"
+  description = "ID de la subred privada"
   type        = string
 }
 
-# EC2 specifications including AMI and instance type
 variable "ec2_specs" {
-  description = "EC2 specifications including AMI and instance type"
+  description = "Especificaciones de EC2"
   type = object({
     ami           = string
     instance_type = string
   })
 }
 
-# Default values for EC2 specs, ensuring proper references
 variable "default_ec2_specs" {
-  description = "Default EC2 specs including AMI and instance type"
+  description = "Valores por defecto para EC2"
   type = object({
     ami           = string
     instance_type = string
   })
-
+  
   default = {
-    ami           = "ami-0f3f13f145e66a0a3"  # Corrected default AMI
-    instance_type = "t2.micro"              # Corrected default instance type
+    ami           = "ami-0f3f13f145e66a0a3"
+    instance_type = "t2.micro"
   }
 }
 
-# Variable for enabling monitoring server deployment
 variable "enable_monitoring" {
-  description = "Enables monitoring server deployment"
-  type        = bool  # Changed to bool for clarity (true/false instead of numbers)
+  description = "Habilita el despliegue del servidor de monitoreo"
+  type        = bool
   default     = false
 }
 
+variable "project" {
+  description = "Identificador del proyecto"
+  type        = string
+}
+
+variable "suffix" {
+  description = "Sufijo para los nombres de los recursos"
+  type        = string
+}
+
+variable "common_tags" {
+  description = "Etiquetas comunes aplicadas a los recursos"
+  type        = map(string)
+}

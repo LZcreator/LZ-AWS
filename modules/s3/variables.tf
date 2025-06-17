@@ -1,25 +1,10 @@
 variable "bucket_name" {
-  description = "The name of the S3 bucket"
+  description = "Nombre del bucket de S3"
   type        = string
 }
 
 variable "enable_versioning" {
-  description = "Enable versioning for the S3 bucket"
+  description = "Habilita versionado en S3"
   type        = bool
-  default     = true
 }
 
-variable "project" {
-  description = "Project name"
-  type        = string
-}
-
-variable "sufix" {
-  description = "Suffix used in resource names"
-  type        = string
-}
-
-variable "common_tags" {
-  description = "Common tags applied to resources"
-  type        = map(string)
-}
