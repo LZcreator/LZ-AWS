@@ -1,18 +1,22 @@
+# Variable defining public instance names
 variable "instance_name" {
   description = "Names for the public instances"
-  type        = set(string)
+  type        = set(string) # Unique list of instance names
 }
 
+# Variable storing the public subnet
 variable "public_subnet" {
-  description = "The public subnet"
+  description = "Public subnet"
   type        = string
 }
 
+# Variable storing the private subnet
 variable "private_subnet" {
-  description = "The private subnet"
+  description = "Private subnet"
   type        = string
 }
 
+# EC2 specifications including AMI and instance type
 variable "ec2_specs" {
   description = "EC2 specifications including AMI and instance type"
   type = object({
@@ -21,12 +25,13 @@ variable "ec2_specs" {
   })
   
   default = {
-    ami           = "var.ec2_specs.ami"
-    instance_type = "var.ec2_specs.instance_type"
+    ami           = "ami-0f3f13f145e66a0a3"  # Corrected default AMI
+    instance_type = "t2.micro"      # Corrected default instance type
   }
 }
 
+# Variable for enabling monitoring server deployment
 variable "enable_monitoring" {
-  description = "Enables the deployment of a monitoring server"
+  description = "Enables monitoring server deployment"
   type        = number
 }
