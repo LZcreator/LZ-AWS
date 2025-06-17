@@ -1,16 +1,18 @@
-# CloudWatch Log Group
+# Create a CloudWatch log group
 resource "aws_cloudwatch_log_group" "app_logs" {
-  name              = "app-log-group"
-  retention_in_days = var.log_retention_days
-
-  tags = var.common_tags
+  name              = "app-log-group"              # Name of the log group
+  retention_in_days = var.log_retention_days       # Number of days logs are retained before deletion
 }
 
-# Conditional CloudWatch CPU Alarm
+# Create a CloudWatch alarm to monitor CPU usage
 resource "aws_cloudwatch_metric_alarm" "cpu_high" {
+  # Use the "enable_cpu_alarm" variable to conditionally create the alarm:
+  # If true, the alarm is created (count = 1); if false, it is not created (count = 0)
   count = var.enable_cpu_alarm ? 1 : 0
 
-  alarm_name          = "HighCPUUtilization"
+  alarm_name = "HighCPUUtilization"
+
+  # Comparison operator; the alarm triggers if the metric exceeds the threshold
   comparison_operator = "GreaterThanThreshold"
   evaluation_periods  = 2
   metric_name         = "CPUUtilization"
